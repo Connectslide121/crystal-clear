@@ -10,6 +10,5 @@ namespace Services.Interfaces
     public interface ICitiesService
     {
         List<CityDTO> GetCities();
-        public CityDTO GetCityById(int id);
     }
 }

@@ -55,11 +55,5 @@ namespace Services.Mappers
             };
             return cityDTO;
         }
-
-
-
-
-
-
     }
 }

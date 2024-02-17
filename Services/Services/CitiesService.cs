@@ -31,14 +31,5 @@ namespace Services.Services
 
             return _mappers.MapCitiesToCityDTOs(cities);
         }
-
-        public CityDTO GetCityById(int id)
-        {
-            City? city = _dbContext.Cities
-                .Where(c => c.Id == id)
-                .SingleOrDefault();
-
-            return _mappers.MapCityToCityDTO(city);
-        }
     }
 }
