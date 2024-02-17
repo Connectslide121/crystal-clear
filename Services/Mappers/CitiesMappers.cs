@@ -44,16 +44,5 @@ namespace Services.Mappers
             }
             return optionDTOs;
         }
-
-        public CityDTO MapCityToCityDTO(City city)
-        {
-            CityDTO cityDTO = new CityDTO
-            {
-                Id = city.Id,
-                Name = city.Name,
-                PricePerSquareMeter = city.PricePerSquareMeter,
-            };
-            return cityDTO;
-        }
     }
 }
