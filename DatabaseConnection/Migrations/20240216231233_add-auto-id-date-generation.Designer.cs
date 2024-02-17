@@ -3,6 +3,7 @@ using System;
 using DatabaseConnection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseConnection.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240216231233_add-auto-id-date-generation")]
+    partial class addautoiddategeneration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,22 +24,22 @@ namespace DatabaseConnection.Migrations
 
             modelBuilder.Entity("CityOption", b =>
                 {
-                    b.Property<int>("AvailableOptionsId")
+                    b.Property<int>("AvailableOptionsOptionId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CitiesId")
+                    b.Property<int>("CitiesCityId")
                         .HasColumnType("int");
 
-                    b.HasKey("AvailableOptionsId", "CitiesId");
+                    b.HasKey("AvailableOptionsOptionId", "CitiesCityId");
 
-                    b.HasIndex("CitiesId");
+                    b.HasIndex("CitiesCityId");
 
                     b.ToTable("CityOption");
                 });
 
             modelBuilder.Entity("Core.City", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CityId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -47,14 +50,14 @@ namespace DatabaseConnection.Migrations
                     b.Property<int>("PricePerSquareMeter")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("CityId");
 
                     b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("Core.Option", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("OptionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -65,14 +68,19 @@ namespace DatabaseConnection.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int?>("QuoteId")
+                        .HasColumnType("int");
+
+                    b.HasKey("OptionId");
+
+                    b.HasIndex("QuoteId");
 
                     b.ToTable("Options");
                 });
 
             modelBuilder.Entity("Core.Quote", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("QuoteId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -83,17 +91,12 @@ namespace DatabaseConnection.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("SelectedOptionsIds")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("SquareMeters")
-                        .HasColumnType("int");
-
                     b.Property<int>("TotalPrice")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("QuoteId");
+
+                    b.HasIndex("CityId");
 
                     b.ToTable("Quotes");
                 });
@@ -102,15 +105,38 @@ namespace DatabaseConnection.Migrations
                 {
                     b.HasOne("Core.Option", null)
                         .WithMany()
-                        .HasForeignKey("AvailableOptionsId")
+                        .HasForeignKey("AvailableOptionsOptionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Core.City", null)
                         .WithMany()
-                        .HasForeignKey("CitiesId")
+                        .HasForeignKey("CitiesCityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Option", b =>
+                {
+                    b.HasOne("Core.Quote", null)
+                        .WithMany("SelectedOptions")
+                        .HasForeignKey("QuoteId");
+                });
+
+            modelBuilder.Entity("Core.Quote", b =>
+                {
+                    b.HasOne("Core.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("City");
+                });
+
+            modelBuilder.Entity("Core.Quote", b =>
+                {
+                    b.Navigation("SelectedOptions");
                 });
 #pragma warning restore 612, 618
         }

@@ -12,6 +12,7 @@ namespace DatabaseConnection
     {
         public DbSet<City> Cities { get; set; }
         public DbSet<Option> Options { get; set; }
+        public DbSet<Quote> Quotes { get; set; }
 
     }
 }

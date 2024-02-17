@@ -3,6 +3,7 @@ using System;
 using DatabaseConnection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseConnection.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240216233912_rename-ids")]
+    partial class renameids
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,7 +68,12 @@ namespace DatabaseConnection.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
+                    b.Property<int?>("QuoteId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("QuoteId");
 
                     b.ToTable("Options");
                 });
@@ -83,17 +91,12 @@ namespace DatabaseConnection.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("SelectedOptionsIds")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("SquareMeters")
-                        .HasColumnType("int");
-
                     b.Property<int>("TotalPrice")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CityId");
 
                     b.ToTable("Quotes");
                 });
@@ -111,6 +114,29 @@ namespace DatabaseConnection.Migrations
                         .HasForeignKey("CitiesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Option", b =>
+                {
+                    b.HasOne("Core.Quote", null)
+                        .WithMany("SelectedOptions")
+                        .HasForeignKey("QuoteId");
+                });
+
+            modelBuilder.Entity("Core.Quote", b =>
+                {
+                    b.HasOne("Core.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("City");
+                });
+
+            modelBuilder.Entity("Core.Quote", b =>
+                {
+                    b.Navigation("SelectedOptions");
                 });
 #pragma warning restore 612, 618
         }

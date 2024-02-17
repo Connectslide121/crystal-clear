@@ -10,7 +10,7 @@ namespace Core
 {
     public class City
     {
-        public int CityId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public int PricePerSquareMeter { get; set; }
         public List<Option> AvailableOptions { get; set; }

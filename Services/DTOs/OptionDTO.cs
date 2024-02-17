@@ -1,17 +1,17 @@
-﻿using System;
+﻿using Core;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core
+namespace Services.DTOs
 {
-    public class Option
+    public class OptionDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<City> Cities { get; set; }
         public int Price { get; set; }
+
     }
 }

@@ -1,6 +1,8 @@
 using DatabaseConnection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Services.Interfaces;
+using Services.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,10 +13,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Get the connection string from the environment variable
-//var connectionString = Environment.GetEnvironmentVariable("CrystalClearConnection");
-var connectionString = "server=localhost;port=3306;database=crystalclear;user=root;password=Mendi1987;";
+IConfigurationRoot Configuration = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json")
+    .Build();
 
+// Get the connection string from appsettings.json
+var connectionString = builder.Configuration.GetConnectionString("CrystalClearConnection");
 
 // Set the MySQL Server Version
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 35));
@@ -23,17 +27,9 @@ var serverVersion = new MySqlServerVersion(new Version(8, 0, 35));
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(connectionString, serverVersion));
 
-
-//Connect IDataService to DataService
-//builder.Services.AddScoped<IUsersService, UsersService>();
-//builder.Services.AddScoped<IPostsService, PostsService>();
-//builder.Services.AddScoped<IEventsService, EventsService>();
-//builder.Services.AddScoped<ICommentsService, CommentsService>();
-
-
-
-
-
+//Connect Interfaces to Services
+builder.Services.AddScoped<ICitiesService, CitiesService>();
+builder.Services.AddScoped<IQuotesService, QuotesService>();
 
 
 var app = builder.Build();
