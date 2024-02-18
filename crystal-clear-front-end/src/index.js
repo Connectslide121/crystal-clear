@@ -4,8 +4,11 @@ import "./styles.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorComponent from "./components/ErrorComponent";
 import Header from "./components/Header";
-import Quote from "./components/Quote";
+
 import QuoteForm from "./components/QuoteForm";
+import { QuoteFormLoader, QuoteFormAction } from "./components/QuoteForm";
+
+import Quote from "./components/Quote";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +18,9 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <QuoteForm />,
-        errorElement: <ErrorComponent />
+        errorElement: <ErrorComponent />,
+        loader: QuoteFormLoader,
+        action: QuoteFormAction
       },
       {
         path: "/quote",

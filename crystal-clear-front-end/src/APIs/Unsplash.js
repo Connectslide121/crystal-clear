@@ -1,6 +1,6 @@
 const API_KEY = "HUBfBOYAY2krhsIhIpu7c0OgMgGPY3ru198GUXrXBy0";
 
-export default async function getImages(input) {
+export default async function GetImages(input) {
   const url = `https://api.unsplash.com/search/photos?query=${input}&client_id=${API_KEY}`;
 
   const response = await fetch(url);
