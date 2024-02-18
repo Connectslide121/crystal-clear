@@ -1,15 +1,28 @@
 import React, { useState } from "react";
-import { GetCities } from "../APIs/API";
-import { Form, useLoaderData } from "react-router-dom";
+import { GetCities, CreateQuote } from "../APIs/API";
+import { Form, redirect, useLoaderData } from "react-router-dom";
 import GetImages from "../APIs/Unsplash";
 
 export async function QuoteFormAction({ request }) {
   const formData = await request.formData();
   const input = Object.fromEntries(formData);
+  const city = JSON.parse(input.city);
+  input.city = city;
 
-  console.log({ input });
-  return 0;
+  const selectedOptions = [];
+  for (const [key, value] of formData) {
+    if (key.startsWith("option")) {
+      selectedOptions.push(JSON.parse(value));
+    }
+  }
+  input.options = selectedOptions;
+
+  const quote = await CreateQuote(input);
+
+  console.log(quote);
+  return redirect(`/quote/${btoa(JSON.stringify(quote))}`);
 }
+
 export async function QuoteFormLoader() {
   const cities = await GetCities();
   const fetchImagePromises = cities.map(async (city) => {
@@ -32,7 +45,7 @@ export default function QuoteForm() {
   return (
     <section id="quote-form">
       <header className="quote-form-header">
-        <h2>Select a city to get a quote</h2>
+        <h2>Select a city:</h2>
       </header>
       <Form method="post">
         <div className="quote-form-cities">
@@ -48,9 +61,9 @@ export default function QuoteForm() {
                 <input
                   type="radio"
                   name="city"
-                  value={city}
+                  value={JSON.stringify(city)}
                   onChange={() => handleCityChange(city)}
-                  checked={selectedCity && selectedCity === city}
+                  checked={selectedCity && selectedCity.id === city.id}
                 />
                 <img src={city.image} alt={city.name} />
                 <h3>{city.name}</h3>
@@ -63,8 +76,12 @@ export default function QuoteForm() {
             selectedCity.availableOptions.map((option) => (
               <article key={option.id} className="quote-form-option">
                 <label>
-                  <input type="checkbox" name="option" value={option.id} />{" "}
-                  {option.name} (SEK {option.price})
+                  <input
+                    type="checkbox"
+                    name={`option${option.id}`}
+                    value={JSON.stringify(option)}
+                  />{" "}
+                  {option.name} ({option.price} kr)
                 </label>
               </article>
             ))}
@@ -74,7 +91,7 @@ export default function QuoteForm() {
             <>
               <input
                 type="number"
-                name="square-meters"
+                name="squareMeters"
                 placeholder="Square meters"
                 required
               />

@@ -8,7 +8,7 @@ import Header from "./components/Header";
 import QuoteForm from "./components/QuoteForm";
 import { QuoteFormLoader, QuoteFormAction } from "./components/QuoteForm";
 
-import Quote from "./components/Quote";
+import Quote, { QuoteLoader } from "./components/Quote";
 
 const router = createBrowserRouter([
   {
@@ -23,9 +23,10 @@ const router = createBrowserRouter([
         action: QuoteFormAction
       },
       {
-        path: "/quote",
+        path: "/quote/:quote",
         element: <Quote />,
-        errorElement: <ErrorComponent />
+        errorElement: <ErrorComponent />,
+        loader: QuoteLoader
       }
     ]
   }

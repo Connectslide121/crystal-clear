@@ -31,7 +31,6 @@
 }
 
 #quote-form {
-  height: 70vh;
   width: 70%;
   margin-inline: auto;
   margin-top: 4vh;
@@ -60,7 +59,7 @@
 
 .quote-form-city {
   width: 40%;
-  height: 25vh;
+  height: 20vh;
   text-align: center;
   border: solid 1px #ccc;
   border-radius: 15px;
@@ -152,4 +151,114 @@
   font-size: 16px;
   font-weight: 500;
   box-shadow: 0px 0px 6px 2px #ccc;
+}
+
+.quote-form-submit button:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.quote-form-submit button:active {
+  color: #333;
+}
+
+#quote {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 4vh auto 0 auto;
+  width: 700px;
+}
+
+.quote-card {
+  border: solid 1px #ccc;
+  border-radius: 15px;
+  background-color: #f1f1f1;
+  box-shadow: 0px 0px 6px 2px #ccc;
+  padding: 4vh;
+  width: 100%;
+}
+
+.quote-card header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.quote-card header div {
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+}
+
+.quote-card header div p {
+  font-size: 18px;
+}
+
+.quote-basic {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.quote-basic div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.quote-options {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.quote-option {
+  display: flex;
+  gap: 60px;
+}
+
+.quote-total {
+  display: flex;
+  justify-content: flex-end;
+  gap: 60px;
+  margin-top: 10px;
+}
+
+.quote-total h4 {
+  text-decoration: underline;
+}
+
+.quote-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 4vh;
+}
+
+.quote-buttons a,
+.quote-buttons button {
+  padding: 10px 20px;
+  border-radius: 15px;
+  border: none;
+  background-color: #4888c4;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0px 0px 6px 2px #ccc;
+  text-decoration: none;
+}
+
+.quote-buttons a:hover,
+.quote-buttons button:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.quote-buttons a:active,
+.quote-buttons button:active {
+  color: #333;
 }

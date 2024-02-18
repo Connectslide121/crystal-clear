@@ -7,3 +7,13 @@ export async function GetCities() {
   });
   return response.data;
 }
+
+export async function CreateQuote(input) {
+  const response = await axios
+    .post("api/quotes/create", input)
+    .catch(function (error) {
+      alert("Error creating quote, there is no connection to the server");
+      console.log("Error creating quote:", error);
+    });
+  return response.data;
+}
