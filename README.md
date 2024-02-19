@@ -70,3 +70,7 @@ In the project directory, you can run:
 [html-to-image](https://www.npmjs.com/package/html-to-image)
 
 [jspdf](https://www.npmjs.com/package/jspdf)
+
+[detect-port](https://www.npmjs.com/package/detect-port)
+
+[cross-env](https://www.npmjs.com/package/cross-env)
