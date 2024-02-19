@@ -3,17 +3,13 @@
 Welcome to the "Crystal Clear" repository. This project is a quote service for a cleaning company built with .NET Core and
 React.
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
 ### Prerequisites
 
 Before you begin, ensure you have the following installed:
 
 - [Node.js](https://nodejs.org/en/) (which comes with [npm](http://npmjs.com/))
 
-### Installing
+## Installing
 
 To get the app running locally:
 
@@ -46,7 +42,7 @@ npm run dev
 
 The application should now be running on http://localhost:3000.
 
-### Available Scripts
+## Available Scripts
 
 In the project directory, you can run:
 
@@ -62,7 +58,7 @@ In the project directory, you can run:
 
 `npm run eject`: Removes the single build dependency from your project.
 
-### Acknowledgments
+## Acknowledgments
 
 [Unsplash API](https://unsplash.com/developers)
 
