@@ -65,8 +65,13 @@ In the project directory, you can run:
 ### Acknowledgments
 
 [Unsplash API](https://unsplash.com/developers)
+
 [Axios](https://axios-http.com/docs/intro)
+
 [React router](https://reactrouter.com/en/main)
+
 [Concurrently](https://www.npmjs.com/package/concurrently)
+
 [html-to-image](https://www.npmjs.com/package/html-to-image)
+
 [jspdf](https://www.npmjs.com/package/jspdf)
