@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.7",
     "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
     "detect-port": "^1.5.1",
     "html-to-image": "^1.11.11",
     "jspdf": "^2.5.1",
