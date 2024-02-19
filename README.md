@@ -17,26 +17,26 @@ Before you begin, ensure you have the following installed:
 
 To get the app running locally:
 
-1. Clone the repository:
+#### 1. Clone the repository:
 
 ```bash
 git clone https://github.com/Connectslide121/crystal-clear.git
 ```
 
-2. Navigate to the project directory:
+#### 2. Navigate to the project directory:
 
 ```bash
 cd crystal-clear
 cd crystal-clear-front-end
 ```
 
-3. Install dependencies:
+#### 3. Install dependencies:
 
 ```bash
 npm install
 ```
 
-4. Start the development server
+#### 4. Start the development server
 
 This script will start both back and front ends concurrently
 
