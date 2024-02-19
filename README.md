@@ -19,11 +19,10 @@ To get the app running locally:
 git clone https://github.com/Connectslide121/crystal-clear.git
 ```
 
-#### 2. Navigate to the project directory:
+#### 2. Navigate to the front-end directory:
 
 ```bash
-cd crystal-clear
-cd crystal-clear-front-end
+cd crystal-clear/crystal-clear-front-end
 ```
 
 #### 3. Install dependencies:
