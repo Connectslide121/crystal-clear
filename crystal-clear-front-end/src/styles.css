@@ -34,6 +34,7 @@
   width: 70%;
   margin-inline: auto;
   margin-top: 4vh;
+  padding-bottom: 4vh;
   display: flex;
   flex-direction: column;
   gap: 4vh;
