@@ -65,7 +65,7 @@ In the project directory, you can run:
 
 [React router](https://reactrouter.com/en/main)
 
-[Concurrently](https://www.npmjs.com/package/concurrently)
+[concurrently](https://www.npmjs.com/package/concurrently)
 
 [html-to-image](https://www.npmjs.com/package/html-to-image)
 
